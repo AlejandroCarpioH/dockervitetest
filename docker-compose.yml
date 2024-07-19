@@ -1,0 +1,24 @@
+services:
+  myapp:
+    container_name: myapp
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    volumes:
+      - "/c/Users/Desarrollador 1/Documents/pruebas/docker/dockertest1/dockerweb:/home/app"
+      - data-test:/data
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - data-mongo:/app/data
+volumes:
+  data-test: # - "C:/Users/Desarrollador 1/Documents/pruebas/docker/dockertest1/dockerweb:/home/app"
+  data-mongo:
